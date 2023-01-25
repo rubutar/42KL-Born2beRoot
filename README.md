@@ -311,21 +311,6 @@ By using LVM, **we can expand the storage of any partition** (now known as a log
 
 
 
-
-
-
-
-## User Management
-
-
-
-## *cron*
-
-
-```
-
- You can find the script `monitoring.sh` in this repository.
-
 ## Bonus
 
 ### #1: Installation
@@ -512,8 +497,8 @@ To prevent user from accessing files or using commands outside the directory tre
 ```
 To whitelist FTP, add below lines:
 ```
-$ sudo vi /etc/vsftpd.userlist
-$ echo <username> | sudo tee -a /etc/vsftpd.userlist
+$ sudo touch /etc/vsftpd.userlist
+$ echo <user name> | sudo tee -a /etc/vsftpd.userlist
 <~~~>
 userlist_enable=YES
 userlist_file=/etc/vsftpd.userlist
@@ -527,35 +512,3 @@ FTP into your virtual machine via `ftp <ip-address>`.
 $ ftp <ip-address>
 ```
 Terminate FTP session at any time via `CTRL + D`.
-
-## <a name="peereval">Submission and peer-evaluation for 1337/42 Students</a>
-
-You only have to turn in a signature.txt file at the root of your Git repository. You must paste in it the signature of your machine’s virtual disk. To get this signature, you first have to open the default installation folder (it is the folder where your VMs are saved):
- 
-• Windows: `%HOMEDRIVE%%HOMEPATH%\VirtualBox VMs\`
-    
-• Linux: `~/VirtualBox VMs/`
-    
-• MacM1: `~/Library/Containers/com.utmapp.UTM/Data/Documents/ `
-    
-• MacOS: ` ~/VirtualBox VMs/`
-
-Then, retrieve the signature from the ".vdi" file (or ".qcow2 for UTM’users) of your virtual machine in sha1 format. Below are 4 command examples for a centos_serv.vdi file:
-    
-• Windows: `certUtil -hashfile centos_serv.vdi sha1 `
-    
-• Linux: `sha1sum centos_serv.vdi`
-    
-• For Mac M1: `shasum Centos.utm/Images/disk-0.qcow2 `
-    
-• MacOS: `shasum centos_serv.vdi`
-    
-This is an example of what kind of output you will get:
-    
-• `6e657c4619944be17df3c31faa030c25e43e40af`
-
-## <a name="evalknowledge">Evalknowledge.txt</a>
-    
-Little Q&A from Subject and whattocheck as evaluator. You can find it in this repository.
-
-I think it's done for now. I highly recommend repeating the installation process several times, if possible, in order to remember and understand everything well. Especially if this is your first time working both Linux and a virtual machine.
