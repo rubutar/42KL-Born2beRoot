@@ -292,18 +292,17 @@ This is an example of what kind of output you will get:
 d33a9eb73cd04c47de30070a1e6bd4688dc692a5
 
 
-
-
-### <a name="What-is-LVM?">What is LVM?</a>
-**LVM (Logical Volume Manager)** is an **abstraction layer between a storage device and a file system**. We get many advantages from using LVM, but the main advantage is that we have much more flexibility when it comes to managing partitions. Suppose we create four partitions on our storage disk. If for any reason we need to expand the storage of the first three partitions, we will not be able to because there is no space available next to them. In case we want to extend the last partition, we will always have the limit imposed by the disk. In other words, we will not be able to manipulate partitions in a friendly way. Thanks to LVM, all these problems are solved.<br>
-By using LVM, **we can expand the storage of any partition** (now known as a logical volume) whenever we want without worrying about the contiguous space available on each logical volume. We can do this with available storage located on different physical disks (which we cannot do with traditional partitions). We can also move different logical volumes between physical devices. Of course, **services and processes will work the same way they always have**. But to understand all this, we have to know:
-<ul>
- <li><b>Physical Volume (PV):</b> physical storage device. It can be a hard disk, an SD card, a floppy disk, etc. This device provides us with storage available to use.</li>
-   <li><b>Volume Group (VG):</b> to use the space provided by a PV, it must be allocated in a volume group. It is like a virtual storage disk that will be used by logical volumes. VGs can grow over time by adding new VPs.</li>
-   <li><b>Logical volume (LV):</b> these devices will be the ones we will use to create file systems, swaps, virtual machines, etc. If the VG is the storage disk, the LV are the partitions that are made on this disk.</li>
-</ul>
-
-
+| 1) lsblk                              1 <- Check partitions
+| 2) sudo aa-status                     2 <- AppArmor status
+| 3) getent group sudo                  3 <- sudo group users
+| 4) getent group user42                4 <- user42 group users
+| 5) sudo service ssh status            5 <- ssh status, yep
+| 6) sudo ufw status                    6 <- ufw status
+| 7) ssh username@ipadress -p 4242      7 <- connect to VM from your host (physical) machine via SSH
+| 8) nano /etc/sudoers.d/<filename>     8 <- yes, sudo config file. You can $ ls /etc/sudoers.d first
+| 9) nano /etc/login.defs               9 <- password expire policy
+| 10) nano /etc/pam.d/common-password  10 <- password policy
+| 11) sudo crontab -l                  11 <- cron schedule
 
 
 
@@ -332,7 +331,7 @@ Allow incoming connections using Port 80 via `sudo ufw allow 80`.
 $ sudo ufw allow 80
 ```
 
-#### Step 2: Installing & Configuring MariaDB
+#### Installing & Configuring MariaDB
 Install *mariadb-server* via `sudo apt install mariadb-server`.
 ```
 $ sudo apt install mariadb-server
@@ -459,7 +458,7 @@ $ sudo service lighttpd force-reload
 
 ### #3: File Transfer Protocol *(FTP)*
 
-#### Step 1: Installing & Configuring FTP
+#### Installing & Configuring FTP
 Install FTP via `sudo apt install vsftpd`.
 ```
 $ sudo apt install vsftpd
@@ -506,7 +505,7 @@ userlist_deny=NO
 <~~~>
 ```
 
-#### Step 2: Connecting to Server via FTP
+#### Connecting to Server via FTP
 FTP into your virtual machine via `ftp <ip-address>`.
 ```
 $ ftp <ip-address>
